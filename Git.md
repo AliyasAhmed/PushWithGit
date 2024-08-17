@@ -34,36 +34,32 @@ Even if you already have files in your project directory, you can follow these s
 
 # Now How to Host
 
-To host your project on GitHub Pages, you need to follow these steps:
+### Step 1: Add homepage to package.json
 
-### Steps to Host Your Project on GitHub Pages
+Open your `package.json` and add a homepage field for your project:
 
-1. **Ensure Your Repository is Ready**
-   - Your project files should already be in your GitHub repository.
-
-2. **Create a `gh-pages` Branch (Optional)**
-   - If you want to keep your main branch separate from your GitHub Pages, you can create a `gh-pages` branch. This is optional and depends on how you want to manage your repository.
-
-   ```bash
-   git checkout -b gh-pages
-   git push -u origin gh-pages
+   ```json
+   "homepage": "https://github.com/AliyasAhmed/my-app",
    ```
+### Step 2: Install gh-pages and add deploy to scripts in package.json
 
-   Alternatively, you can use the `main` branch directly for GitHub Pages.
+ ```json
+   npm install --save gh-pages
+ ```
 
-3. **Configure GitHub Pages**
-   - Go to your repository on GitHub.
-   - Click on the "Settings" tab.
-   - Scroll down to the "GitHub Pages" section.
+Add the following scripts in your package.json:
+   ```json
+     "scripts": {
++   "predeploy": "npm run build",
++   "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+```
 
-4. **Select the Branch for GitHub Pages**
-   - In the "Source" dropdown, select the branch you want to use (e.g., `main` or `gh-pages`).
-   - Click "Save".
-
-5. **Verify Your Site**
-   - After saving, GitHub will automatically build and host your site.
-   - You will see a message that says "Your site is published at https://<username>.github.io/<repository-name>".
-
+### Final Step
+   ```
+   npm run deploy
+   ```
 ### Example
 
 For your repository, if you are using the `main` branch:
